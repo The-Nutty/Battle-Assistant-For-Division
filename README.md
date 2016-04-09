@@ -7,4 +7,4 @@ Paid: https://play.google.com/store/apps/details?id=com.tomhazell.division.mobil
 
 see the website here: http://thedivisionba.com/
 
-See the compainions code here: 
+See the compainions code here: https://github.com/The-Nutty/Battle-Assistant-For-Division-Companion
