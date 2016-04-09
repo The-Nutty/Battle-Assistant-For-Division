@@ -1,2 +1,10 @@
 # Battle-Assistant-For-Division
-This is the app for Battle Assistant For The Division
+Google play links: 
+add supported: https://play.google.com/store/apps/details?id=com.tomhazell.division.mobile.assistantpro
+
+Paid: https://play.google.com/store/apps/details?id=com.tomhazell.division.mobile.assistantpro
+
+
+see the website here: http://thedivisionba.com/
+
+See the compainions code here: 
