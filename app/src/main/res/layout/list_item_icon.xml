@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+    android:clickable="true"
+    android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:padding="8dp"
+        android:id="@+id/layoutRelClick">
+    <!--android:background="@drawable/border"-->
+    <!--android:layout_width="150dp"
+        android:layout_height="140dp"-->
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+        <ImageView
+
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/listImage"
+            android:layout_centerHorizontal="true"
+            />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+
+        android:text="Large Text"
+        android:id="@+id/ListTitle"
+        android:textSize="16dp"
+        android:layout_below="@+id/listImage"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/divider"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:visibility="gone"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/listDiscrip"
+            android:textSize="16dp"
+            android:layout_below="@+id/divider"
+            android:visibility="gone"/>
+        </RelativeLayout>
+
+</RelativeLayout>

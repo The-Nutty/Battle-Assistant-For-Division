@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_weight="10"
+    android:id="@+id/main">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingLeft="32dp"
+        android:layout_weight="3"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:paddingRight="32dp"
+        android:textSize="28sp"
+        android:text="Enter IP show on your computer:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingLeft="32dp"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#ffffff"
+        android:paddingRight="32dp"
+        android:textSize="24sp"
+        android:text=" 192.168.0.5 For example:"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="4"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+            android:src="@drawable/ipbox"
+            android:scaleType="fitCenter"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="3"
+        android:paddingLeft="64dp"
+        android:paddingRight="64dp">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Enter Ip here"
+        android:id="@+id/IppSlideEt"
+        android:textSize="26sp"
+        android:textColor="#ffffff"
+        android:singleLine="true"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="64dp" />
+</LinearLayout>

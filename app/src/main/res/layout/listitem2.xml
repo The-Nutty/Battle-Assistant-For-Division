@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?attr/selectableItemBackground"
+    android:id="@+id/layoutRelClick">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/listImage"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingRight="8dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/listImage">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/ListTitle"
+            android:textSize="22dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:id="@+id/divider"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_below="@+id/ListTitle"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/listDiscrip"
+            android:textSize="16dp"
+            android:layout_below="@+id/divider" />
+        </RelativeLayout>
+
+</RelativeLayout>

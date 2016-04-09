@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.tomhazell.division.mobile.assistant.MainActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_IP"
+        android:title="Edit IP"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_ScreenOn"
+        android:title="Force the screen on"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:visible="true"
+        android:checkable="true"/>
+
+    <item android:id="@+id/action_viewtype"
+        android:title="Change View Type"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_tabbed"
+        android:title="Seperate Nades and Consumables?"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:visible="true"
+        android:checkable="true"/>
+
+    <item android:id="@+id/action_More"
+        android:title="FAQ and Instruction"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_addfree"
+        android:title="Remove Adds"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>

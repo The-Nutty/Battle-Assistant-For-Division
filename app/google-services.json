@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_id": "battle-assistant-for-division",
+    "project_number": "1075018506548",
+    "name": "Battle Assistant For Division"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075018506548:android:d637579ce7e0225d",
+        "client_id": "android:com.tomhazell.division.mobile.assistant",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.tomhazell.division.mobile.assistant",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-75497845-2"
+          }
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
