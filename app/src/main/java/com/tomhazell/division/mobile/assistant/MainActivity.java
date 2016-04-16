@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     PagerAdapter adapter;
 
+    //view injections
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
             tabLayout.addTab(tabLayout.newTab().setText("Nades"));
 
         }else{
+            //hides the tab selector bar
             tabLayout.addTab(tabLayout.newTab().setText("All"));
             tabLayout.setVisibility(View.GONE);
         }
@@ -73,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         adapter = new PagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
+
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         final ViewPager FviewPager = viewPager;
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -82,14 +87,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
 
         //init admob
@@ -129,8 +130,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void showToast(String message) {
         Snackbar snackbar = Snackbar
                 .make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
-
-        snackbar.show();    }
+        snackbar.show();
+    }
 
     @Override
     public void navigateToFirstLanuch() {
@@ -166,9 +167,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
             case R.id.action_IP:
                 IPdialog();
                 return true;
+
             case R.id.action_More:
                 navigateToTheWebsite();
                 return true;
+
             case R.id.action_ScreenOn:
                 //save checked state
                 item.setChecked(!item.isChecked());
@@ -183,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
                     wakeLock.release();
                 }
                 return true;
+
             case R.id.action_viewtype:
                 viewDialog();
                 return true;
@@ -196,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 showToast("Restarting App");
                 restartApp();
                 return true;
+
             case R.id.action_addfree:
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.tomhazell.division.mobile.assistantpro"));
                 startActivity(intent);
@@ -265,7 +270,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         new MaterialDialog.Builder(this)
                 .title("IP Address")
                 .content("Enter the IP address that was given by the companion program")
-                //.inputType(InputType.TYPE_CLASS_TEXT)
                 .input("IP address", ip, new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
@@ -282,7 +286,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         PendingIntent mPendingIntent = PendingIntent.getActivity(this, mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager mgr = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
-        //System.exit(0);
 
     }
 

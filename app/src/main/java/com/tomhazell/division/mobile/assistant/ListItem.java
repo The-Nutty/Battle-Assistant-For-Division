@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 /**
  * Created by Tom Hazell on 18/03/2016.
- * used to store teh data put in to the recycler views about each item.
+ * used to store the data put in to the recycler views about each item.
  */
 public class ListItem {
 
@@ -19,5 +19,4 @@ public class ListItem {
         Command = command;
 
     }
-
 }

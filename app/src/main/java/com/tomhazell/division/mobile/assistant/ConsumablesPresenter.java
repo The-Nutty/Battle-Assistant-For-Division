@@ -11,5 +11,4 @@ public interface ConsumablesPresenter {
 
     ListItem[] getListItems(String Type);
 
-
 }

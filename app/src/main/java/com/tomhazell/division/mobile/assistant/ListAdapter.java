@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.tomhazell.division.battleassistant.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by Tom Hazell on 18/03/2016.
  */
@@ -26,17 +29,21 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
+        @Bind(R.id.ListTitle)
         public TextView Title;
+
+        @Bind(R.id.listDiscrip)
         public TextView Discrip;
+
+        @Bind(R.id.listImage)
         public ImageView Image;
 
+        @Bind(R.id.layoutRelClick)
         public RelativeLayout layout;
+
         public ViewHolder(View v) {
             super(v);
-            Title = (TextView) v.findViewById(R.id.ListTitle);
-            Discrip = (TextView) v.findViewById(R.id.listDiscrip);
-            Image = (ImageView) v.findViewById(R.id.listImage);
-            layout = (RelativeLayout) v.findViewById(R.id.layoutRelClick);
+            ButterKnife.bind(this, v);
         }
 
         public void bind(final ListItem item, final OnRecyclerClick listener) {

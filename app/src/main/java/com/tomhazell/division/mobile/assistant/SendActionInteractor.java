@@ -6,5 +6,4 @@ package com.tomhazell.division.mobile.assistant;
 public interface SendActionInteractor {
 
     void SendAction(OnFinishedListener listener, String code, String Ip);
-
 }

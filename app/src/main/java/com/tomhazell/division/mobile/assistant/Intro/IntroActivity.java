@@ -43,14 +43,10 @@ public class IntroActivity extends AppIntro2 {
     }
 
     @Override
-    public void onSlideChanged() {
-        // Do something when the slide changes.
-    }
+    public void onSlideChanged() {}
 
     @Override
-    public void onNextPressed() {
-        // Do something when users tap on Next button.
-    }
+    public void onNextPressed() {}
 
     private void loadMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);

@@ -16,14 +16,18 @@ import android.widget.Toast;
 import com.tomhazell.division.battleassistant.R;
 import com.tomhazell.division.mobile.assistant.Intro.IntroActivity;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by Tom Hazell on 01/04/2016.
  *
  * This is the fragment for the view pager. It will show
  */
 public class ConsumableFragment extends Fragment implements MainView {
+    @Bind(R.id.RecyclerConsumables)
+    RecyclerView mRecyclerView;
 
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
 
     private ConsumablesPresenter presenter;
@@ -34,8 +38,9 @@ public class ConsumableFragment extends Fragment implements MainView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         type = getArguments().getString("Type");
-        Log.w("app", type);
-        return inflater.inflate(R.layout.fragment_consumable, container, false);
+        View v = inflater.inflate(R.layout.fragment_consumable, container, false);
+        ButterKnife.bind(this, v);
+        return v;
     }
 
     @Override
@@ -45,7 +50,6 @@ public class ConsumableFragment extends Fragment implements MainView {
 
         presenter = new ConsumablesPresenterImpl(this, getActivity());
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.RecyclerConsumables);
         mRecyclerView.setHasFixedSize(true);
 
 
