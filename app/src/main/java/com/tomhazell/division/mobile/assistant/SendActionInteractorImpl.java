@@ -34,33 +34,22 @@ public class SendActionInteractorImpl implements SendActionInteractor {
         @Override
         protected String doInBackground(String... params) {
             try {
-                DatagramSocket clientSocket = new DatagramSocket();
-                clientSocket.setSoTimeout(1000);
-
+                SocketHelper socket = new SocketHelper();
                 InetAddress IPAddress = InetAddress.getByName(params[1]);
 
-                byte[] sendData;
-                byte[] receiveData = new byte[1024];
 
                 //get the parameter corresponding to the code, create and send packet
                 String command = params[0];
-                sendData = command.getBytes();
 
-                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 54545);
-                clientSocket.send(sendPacket);
+                socket.SendPacket(command, IPAddress);
 
                 //attempt to receive packet (to check that the server received the command) and save it in receiveData buffer
-                DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+                String response;
                 try {
-                    clientSocket.receive(receivePacket);
+                    response = socket.RecivePacket();
                 }catch (SocketTimeoutException e){
-                    clientSocket.close();
                     return "Time Out";
                 }
-
-                //trim responce to avoid padding chars being displayed.
-                String response = new String(receivePacket.getData()).trim();
-                clientSocket.close();
 
                 if(!response.equals("0")){
                     return "unexpected result: " + response;
@@ -78,7 +67,7 @@ public class SendActionInteractorImpl implements SendActionInteractor {
         @Override
         protected void onPostExecute(String result) {
 
-            onFinishedListener.onFinished(result, true);
+            onFinishedListener.onFinished(result);
         }
     }
 }
