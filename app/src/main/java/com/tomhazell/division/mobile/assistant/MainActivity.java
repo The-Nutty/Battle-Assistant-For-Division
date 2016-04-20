@@ -30,11 +30,14 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.tomhazell.division.mobile.assistant.Intro.IntroActivity;
 import com.tomhazell.division.battleassistant.R;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity implements MainView {
 
     private MainPresenter presenter;
 
-    private Tracker mTracker;
+    @Inject
+    Tracker mTracker;
 
     PowerManager.WakeLock wakeLock;
 
@@ -48,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BattleApplication.from(this).getComponent().inject(this);
+
         presenter = new MainPresenterImpl(this, MainActivity.this);
 
 
@@ -102,8 +108,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         //same with Analytics
 
         GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-        // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
-        mTracker = analytics.newTracker(R.xml.global_tracker);
 
         //init wakelock
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);

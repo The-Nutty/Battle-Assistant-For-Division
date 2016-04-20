@@ -75,8 +75,8 @@ public class ConsumablesPresenterImpl implements ConsumablesPresenter, OnFinishe
     }
 
     @Override
-    public void onFinished(String message, boolean error){
-        if (error){
+    public void onFinished(String message){
+        if (!message.equals("")){
             mainView.showToast(message);
         }
     }

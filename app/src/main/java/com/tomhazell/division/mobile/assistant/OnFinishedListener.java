@@ -7,5 +7,5 @@ import java.util.List;
  */
 public interface OnFinishedListener {
 
-    void onFinished(String message, boolean error);
+    void onFinished(String message);
 }

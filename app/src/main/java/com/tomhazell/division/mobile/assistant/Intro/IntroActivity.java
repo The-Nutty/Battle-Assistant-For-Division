@@ -11,16 +11,21 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.tomhazell.division.mobile.assistant.MainActivity;
 import com.tomhazell.division.battleassistant.R;
+import com.tomhazell.division.mobile.assistant.BattleApplication;
+
+import javax.inject.Inject;
 
 /**
  * Created by Tom Hazell on 20/03/2016.
  */
 public class IntroActivity extends AppIntro2 {
 
-    private Tracker mTracker;
+    @Inject
+    Tracker mTracker;
 
     @Override
     public void init(Bundle savedInstanceState) {
+        BattleApplication.from(this).getComponent().inject(this);
 
         addSlide(AppIntroFragment.newInstance("Download the computer companion", "First you need to download the computer companion to go with the app. This can be downloaded from TheDivisionBA.com, when you want to run the battle assistant run this.", R.drawable.downloadicon, ContextCompat.getColor(IntroActivity.this, R.color.colorPrimary)));
         addSlide(AppIntroFragment.newInstance("Preperation", "Make sure that your phone and the computer are on the same network.", R.drawable.wifiicon, ContextCompat.getColor(IntroActivity.this, R.color.colorPrimary)));

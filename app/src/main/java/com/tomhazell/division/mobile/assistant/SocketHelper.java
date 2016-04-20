@@ -15,7 +15,7 @@ public class SocketHelper {
     DatagramSocket clientSocket;
     int port = 54545;
 
-    SocketHelper() throws SocketException {
+    public SocketHelper() throws SocketException {
         clientSocket = new DatagramSocket();
         clientSocket.setSoTimeout(1000);
 
