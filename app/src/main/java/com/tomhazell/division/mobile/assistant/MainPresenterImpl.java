@@ -10,7 +10,6 @@ import android.util.Log;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.tomhazell.division.battleassistant.R;
 
 /**
  * Created by Tom Hazell on 17/03/2016.
@@ -36,7 +35,6 @@ public class MainPresenterImpl implements MainPresenter {
         //  Create a new boolean and preference and set it to true
         boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
 
-        Log.w("app", isFirstStart ? "yes it is" : "No its not");
         //  If the activity has never started before...
         if (isFirstStart) {
 

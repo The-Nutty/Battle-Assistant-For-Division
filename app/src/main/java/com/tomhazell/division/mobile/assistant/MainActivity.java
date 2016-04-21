@@ -39,12 +39,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Inject
     Tracker mTracker;
 
+    @Inject
+    SharedPreferences sPrefs;
+
+    @Inject
+    SharedPreferences.Editor sPrefsEdit;
+
     PowerManager.WakeLock wakeLock;
 
     PagerAdapter adapter;
-
-    //view injections
-
 
 
     @Override
@@ -63,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.main_layout);
         layout.setBackgroundResource(R.drawable.background);
 
-        SharedPreferences settings = getSharedPreferences("settings", 0);
-        boolean tabed = settings.getBoolean("Tabed", true);
+
+        boolean tabed = sPrefs.getBoolean("Tabed", true);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         if(tabed){
@@ -105,17 +108,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
         .addTestDevice("EBE891961B797AFB872D011247B32C1D").build();
         mAdView.loadAd(adRequest);
 
-        //same with Analytics
-
-        GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-
         //init wakelock
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "Battle Assistant For The Division");
 
         //set wake lock if appropriate
-        SharedPreferences Prefsettings = getSharedPreferences("settings", 0);
-        boolean isChecked = settings.getBoolean("menu_checkbox_screen", false);
+        boolean isChecked = sPrefs.getBoolean("menu_checkbox_screen", false);
         if (isChecked){
             wakeLock.acquire();
         }
@@ -153,9 +151,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         //set value for screen lock
-        SharedPreferences settings = getSharedPreferences("settings", 0);
-        boolean isChecked = settings.getBoolean("menu_checkbox_screen", false);
-        boolean tabbed = settings.getBoolean("Tabed", true);
+        boolean isChecked = sPrefs.getBoolean("menu_checkbox_screen", false);
+        boolean tabbed = sPrefs.getBoolean("Tabed", true);
 
         MenuItem item = menu.findItem(R.id.action_ScreenOn);
         item.setChecked(isChecked);
@@ -179,10 +176,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
             case R.id.action_ScreenOn:
                 //save checked state
                 item.setChecked(!item.isChecked());
-                SharedPreferences settings = getSharedPreferences("settings", 0);
-                SharedPreferences.Editor editor = settings.edit();
-                editor.putBoolean("menu_checkbox_screen", item.isChecked());
-                editor.commit();
+
+                sPrefsEdit.putBoolean("menu_checkbox_screen", item.isChecked());
+                sPrefsEdit.commit();
 
                 if(item.isChecked()){
                     wakeLock.acquire();
@@ -197,10 +193,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
             case R.id.action_tabbed:
                 item.setChecked(!item.isChecked());
-                SharedPreferences prefsettings = getSharedPreferences("settings", 0);
-                SharedPreferences.Editor prefeditor = prefsettings.edit();
-                prefeditor.putBoolean("Tabed", item.isChecked());
-                prefeditor.commit();
+                sPrefsEdit.putBoolean("Tabed", item.isChecked());
+                sPrefsEdit.commit();
                 showToast("Restarting App");
                 restartApp();
                 return true;
@@ -217,8 +211,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     private void viewDialog() {
 
-        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
-        String view = prefs.getString("view", "List");
+        String view = sPrefs.getString("view", "List");
         int selection;
         switch(view){
             case "List":
@@ -253,9 +246,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
                                 saveText = "List";
                                 break;
                         }
-                        SharedPreferences.Editor editor = getSharedPreferences("settings", MODE_PRIVATE).edit();
-                        editor.putString("view", saveText);
-                        editor.commit();
+                        sPrefsEdit.putString("view", saveText);
+                        sPrefsEdit.commit();
 
                         MainActivity.this.recreate();
 
@@ -268,8 +260,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     private void IPdialog(){
-        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
-        String ip = prefs.getString("IP", "");
+        String ip = sPrefs.getString("IP", "");
 
         new MaterialDialog.Builder(this)
                 .title("IP Address")
@@ -277,9 +268,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 .input("IP address", ip, new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
-                        SharedPreferences.Editor editor = getSharedPreferences("settings", MODE_PRIVATE).edit();
-                        editor.putString("IP", input.toString());
-                        editor.commit();
+                        sPrefsEdit.putString("IP", input.toString());
+                        sPrefsEdit.commit();
                     }
                 }).show();
     }

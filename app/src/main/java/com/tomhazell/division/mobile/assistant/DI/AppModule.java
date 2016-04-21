@@ -1,6 +1,9 @@
 package com.tomhazell.division.mobile.assistant.DI;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -30,16 +33,28 @@ public class AppModule {
 
     @Provides
     @Singleton
-    Context provideApplicationContext() {
+    Application provideApplication() {
         return mApplication;
     }
 
     @Provides
     @Singleton
-    Tracker provideTracker() {
-        GoogleAnalytics analytics = GoogleAnalytics.getInstance(mApplication.getApplicationContext());
+    Tracker provideTracker(Application application) {
+        GoogleAnalytics analytics = GoogleAnalytics.getInstance(application);
 
         return analytics.newTracker(R.xml.global_tracker);
+    }
+
+    @Provides
+    @Singleton
+    SharedPreferences provideSharedPreferences(Application application) {
+        return application.getSharedPreferences("settings", 0);
+    }
+
+    @Provides
+    @Singleton
+    SharedPreferences.Editor provideSharedPreferencesEditor(SharedPreferences sPref) {
+        return sPref.edit();
     }
 
 }
