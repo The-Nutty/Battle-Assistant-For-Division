@@ -10,8 +10,11 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.tomhazell.division.battleassistant.R;
 import com.tomhazell.division.mobile.assistant.BattleApplication;
+import com.tomhazell.division.mobile.assistant.SendActionInteractor;
+import com.tomhazell.division.mobile.assistant.SendActionInteractorImpl;
 import com.tomhazell.division.mobile.assistant.SocketHelper;
 
+import java.net.DatagramSocket;
 import java.net.SocketException;
 
 import javax.inject.Singleton;
@@ -55,6 +58,30 @@ public class AppModule {
     @Singleton
     SharedPreferences.Editor provideSharedPreferencesEditor(SharedPreferences sPref) {
         return sPref.edit();
+    }
+
+    @Provides
+    DatagramSocket provideDatagramSocket(){
+        DatagramSocket clientSocket = null;
+        try {
+            clientSocket = new DatagramSocket();
+            clientSocket.setSoTimeout(1000);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        return clientSocket;
+    }
+
+    @Provides
+    SocketHelper provideSocketHelper(DatagramSocket socket){
+        return new SocketHelper(socket);
+    }
+
+    @Provides
+    SendActionInteractor provideSendActionInteractor(SocketHelper socketHelper){
+
+        return new SendActionInteractorImpl(socketHelper);
+
     }
 
 }

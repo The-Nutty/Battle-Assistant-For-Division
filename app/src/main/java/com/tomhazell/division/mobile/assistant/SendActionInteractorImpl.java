@@ -5,10 +5,13 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.tomhazell.division.mobile.assistant.DI.DaggerAppComponent;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
@@ -21,9 +24,17 @@ public class SendActionInteractorImpl implements SendActionInteractor {
 
     private OnFinishedListener onFinishedListener;
 
+    SocketHelper SHelper;
+
+    public SendActionInteractorImpl(SocketHelper socketH){
+        SHelper = socketH;
+
+    }
+
     @Override
     public void SendAction(OnFinishedListener listener, String code, String Ip) {
         onFinishedListener = listener;
+
         new AsyncTaskRunner().execute(code, Ip);
     }
 
@@ -34,19 +45,21 @@ public class SendActionInteractorImpl implements SendActionInteractor {
         @Override
         protected String doInBackground(String... params) {
             try {
-                SocketHelper socket = new SocketHelper();
+
+
+
                 InetAddress IPAddress = InetAddress.getByName(params[1]);
 
 
                 //get the parameter corresponding to the code, create and send packet
                 String command = params[0];
 
-                socket.SendPacket(command, IPAddress);
+                SHelper.SendPacket(command, IPAddress);
 
                 //attempt to receive packet (to check that the server received the command) and save it in receiveData buffer
                 String response;
                 try {
-                    response = socket.RecivePacket();
+                    response = SHelper.RecivePacket();
                 }catch (SocketTimeoutException e){
                     return "Time Out";
                 }

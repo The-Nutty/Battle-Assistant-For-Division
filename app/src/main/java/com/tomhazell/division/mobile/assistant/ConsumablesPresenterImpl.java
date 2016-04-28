@@ -5,7 +5,11 @@ import android.content.SharedPreferences;
 
 import com.tomhazell.division.battleassistant.R;
 
+import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
+
+import javax.inject.Inject;
 
 /**
  * Created by Tom Hazell on 17/03/2016.
@@ -13,20 +17,21 @@ import java.net.InetAddress;
 public class ConsumablesPresenterImpl implements ConsumablesPresenter, OnFinishedListener{
 
     private MainView mainView;
-    private SendActionInteractor sendActionInteractor;
-    private Context context;
+
+    @Inject
+    SharedPreferences prefs;
+
+    @Inject
+    SendActionInteractor sendActionInteractor;
 
     public ConsumablesPresenterImpl(MainView mainView, Context mcontext) {
         this.mainView = mainView;
-        sendActionInteractor = new SendActionInteractorImpl();
-        context = mcontext;
+        BattleApplication.from(mcontext).getComponent().inject(this);
 
     }
 
     @Override
     public void onClick(ListItem item) {
-        SharedPreferences prefs = context.getSharedPreferences("settings", context.MODE_PRIVATE);
-
         String Ip = prefs.getString("IP", "");
         sendActionInteractor.SendAction(this, item.Command, Ip);
     }

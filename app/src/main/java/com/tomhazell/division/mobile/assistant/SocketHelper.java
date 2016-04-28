@@ -5,7 +5,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.net.SocketTimeoutException;
 
 /**
  * Created by Tom Hazell on 20/04/2016.
@@ -15,10 +14,8 @@ public class SocketHelper {
     DatagramSocket clientSocket;
     int port = 54545;
 
-    public SocketHelper() throws SocketException {
-        clientSocket = new DatagramSocket();
-        clientSocket.setSoTimeout(1000);
-
+    public SocketHelper(DatagramSocket socket) {
+        clientSocket = socket;
     }
 
     public void SendPacket(String command, InetAddress addr) throws IOException {
